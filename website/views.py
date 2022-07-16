@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from .models import Note, User
 from . import db
 import json
+import random
 
 views = Blueprint('views', __name__)
 
@@ -40,9 +41,9 @@ def delete_note():
 def qrewards():
     users = User.query.all()
     deals = [note for user in users for note in user.notes]
-    print(deals)
-    for user in users:
-        for note in user.notes:
-            print(note.data)
-
+    idx = random.randint(0,len(deals)-1)
+    note = deals[idx]
+    # for user in users:
+    #     for note in user.notes:
+    #         print(note.data)
     return render_template("qrewards.html",user=current_user,note = note)
