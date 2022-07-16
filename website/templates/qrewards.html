@@ -1,0 +1,19 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+%}
+<h1 align="center">You Won a Deal!</h1>
+
+<ul class="list-group list-group-flush" id="notes">
+  <li class="list-group-item">
+    {{ note.data }}
+    <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </li>
+</ul>
+<img src="{{ url_for('static', filename='raffle.gif') }}" alt="this slowpoke moves"  width="250" />
+<!--
+<video width="320" height="240" controls="" autoplay="" name="media">
+  <source src="{{ url_for('static', filename='raffle.MP4') }}" type="video/mp4">
+</video>
+-->
+{% endblock %}
