@@ -2,9 +2,12 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
+from flask_mail import Mail
+
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
+mail = Mail()
 
 
 def create_app():
@@ -26,6 +29,14 @@ def create_app():
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
+
+    app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+    app.config['MAIL_PORT'] = 465
+    app.config['MAIL_USERNAME'] = 'qrewardsraffle@gmail.com'
+    app.config['MAIL_PASSWORD'] = 'ifmcqlyfuzfjbfav'
+    app.config['MAIL_USE_TLS'] = False
+    app.config['MAIL_USE_SSL'] = True
+    mail.init_app(app)
 
     @login_manager.user_loader
     def load_user(id):

@@ -11,6 +11,14 @@
   </li>
 </ul>
 <img src="{{ url_for('static', filename='raffle.gif') }}" alt="this slowpoke moves"  width="250" />
+
+<form method="POST">
+  <textarea name="email" id="email" class="form-control"></textarea>
+  <br />
+  <div align="center">
+    <button type="submit" class="btn btn-primary">Add email</button>
+  </div>
+</form>
 <!--
 <video width="320" height="240" controls="" autoplay="" name="media">
   <source src="{{ url_for('static', filename='raffle.MP4') }}" type="video/mp4">
