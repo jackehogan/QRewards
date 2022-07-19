@@ -1,4 +1,5 @@
 flask
 Flask-SQLAlchemy
 flask-login
+flask-mail
 gunicorn==20.0.4
