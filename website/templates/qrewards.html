@@ -1,8 +1,8 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
 %}
 <h1 align="center">You Won a Deal!</h1>
-<div class="image">
-  <img class="animated-gif" src="{{ url_for('static', filename='logo.gif') }}"/>
+<div class="gif" align="center" >
+  <img class="animated-gif" width="320" height=auto" src="{{ url_for('static', filename='logo.gif') }}" />
 </div>
 <h3 align="center"> {{ note.data }} </h3>
 <h3 align="center"> 2 </h3>
