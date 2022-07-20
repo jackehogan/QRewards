@@ -37,9 +37,11 @@ def delete_note():
 
     return jsonify({})
 
-@views.route('/qrewards', methods=['GET','POST'])
-def qrewards():
-    users = User.query.all()
+@views.route('/qrewards/<location>', methods=['GET','POST'])
+def qrewards(location):
+    print(location)
+    # users = User.query.all()
+    users = User.query.filter_by(location=location)
     deals = [note for user in users for note in user.notes]
     idx = random.randint(0,len(deals)-1)
     note = deals[idx]
@@ -47,9 +49,26 @@ def qrewards():
     if request.method == 'POST':
         email = request.form.get('email')
         print(email)
-        msg = Message('Hello from the other side!', sender='qrewardsraffle@gmail.com', recipients=[email])
+        msg = Message('Hello from QRewards!', sender='qrewardsraffle@gmail.com', recipients=[email])
         msg.body = "Hey " + email + " sending you this deal! " + note.data
         print(msg.body)
         mail.send(msg)
+
+        # import vonage
+        # client = vonage.Client(key="5f841ab4", secret="zzWhOuUmzunlOL7x")
+        # sms = vonage.Sms(client)
+        #
+        # responseData = sms.send_message(
+        #     {
+        #         "from": "18335787007",
+        #         "to": "14152331142",
+        #         "text": "A text message sent using the Nexmo SMS API",
+        #     }
+        # )
+        #
+        # if responseData["messages"][0]["status"] == "0":
+        #     print("Message sent successfully.")
+        # else:
+        #     print(f"Message failed with error: {responseData['messages'][0]['error-text']}")
 
     return render_template("qrewards.html",user=current_user,note = note)
