@@ -2,10 +2,10 @@
 %}
 <h1 align="center">You Won a Deal!</h1>
 <div class="image">
-  <img class="object-fit_fill" src="{{ url_for('static', filename='logo.gif') }}" alt="this slowpoke moves" />
+  <img class="animated-gif" src="{{ url_for('static', filename='logo.gif') }}"/>
 </div>
 <h3 align="center"> {{ note.data }} </h3>
-<h3 align="center"> 1 </h3>
+<h3 align="center"> 2 </h3>
 
 {% if not user.is_authenticated %}
 <form method="POST">
