@@ -1,24 +1,18 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
 %}
 <h1 align="center">You Won a Deal!</h1>
+<img src="{{ url_for('static', filename='logo.gif') }}" alt="this slowpoke moves"  width="750" align="center"/>
+<h3 align="center"> {{ note.data }} </h3>
 
-<ul class="list-group list-group-flush" id="notes">
-  <li class="list-group-item">
-    {{ note.data }}
-    <button type="button" class="close" onClick="deleteNote({{ note.id }})">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </li>
-</ul>
-<img src="{{ url_for('static', filename='raffle.gif') }}" alt="this slowpoke moves"  width="250" />
-
+{% if not user.is_authenticated %}
 <form method="POST">
-  <textarea name="email" id="email" class="form-control"></textarea>
+  <textarea name="email" id="email" class="form-control">Enter email to receive deal</textarea>
   <br />
-  <div align="center">
+  <div align="left">
     <button type="submit" class="btn btn-primary">Add email</button>
   </div>
 </form>
+{% endif %}
 <!--
 <video width="320" height="240" controls="" autoplay="" name="media">
   <source src="{{ url_for('static', filename='raffle.MP4') }}" type="video/mp4">
